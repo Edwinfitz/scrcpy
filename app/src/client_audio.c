@@ -16,11 +16,7 @@
 // Detect platform-specific audio input format
 static const char *detect_audio_format(void) {
 #ifdef _WIN32
-    // Try WASAPI first (more modern), fallback to dshow
-    if (av_find_input_format("wasapi")) {
-        return "wasapi";
-    }
-    return "dshow";
+    return "wasapi";
 #elif defined(__APPLE__)
     return "avfoundation";
 #else
