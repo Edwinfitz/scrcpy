@@ -109,12 +109,6 @@ endif
 libavdevice_dep = dependency('libavdevice', static: get_option('static'), required: false)
 client_audio_support = get_option('client_audio') and libavdevice_dep.found()
 
-message('=== CLIENT AUDIO DEBUG ===')
-message('client_audio = ' + get_option('client_audio').to_string())
-message('libavdevice found = ' + libavdevice_dep.found().to_string())
-message('client_audio_support = ' + client_audio_support.to_string())
-error('DEBUG STOP')
-
 if client_audio_support
     src += [ 'src/client_audio.c' ]
 endif
