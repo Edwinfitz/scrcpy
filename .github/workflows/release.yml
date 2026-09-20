@@ -472,11 +472,7 @@ jobs:
   release:
     needs:
       - build-scrcpy-server
-      - package-linux-x86_64
-      - package-win32
       - package-win64
-      - package-macos-aarch64
-      - package-macos-x86_64
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -488,34 +484,10 @@ jobs:
           name: scrcpy-server
           path: release/work/build-server/server/
 
-      - name: Download release-linux-x86_64
-        uses: actions/download-artifact@v8
-        with:
-          name: release-linux-x86_64
-          path: release/output/
-
-      - name: Download release-win32
-        uses: actions/download-artifact@v8
-        with:
-          name: release-win32
-          path: release/output/
-
       - name: Download release-win64
         uses: actions/download-artifact@v8
         with:
           name: release-win64
-          path: release/output/
-
-      - name: Download release-macos-aarch64
-        uses: actions/download-artifact@v8
-        with:
-          name: release-macos-aarch64
-          path: release/output/
-
-      - name: Download release-macos-x86_64
-        uses: actions/download-artifact@v8
-        with:
-          name: release-macos-x86_64
           path: release/output/
 
       - name: Package server
