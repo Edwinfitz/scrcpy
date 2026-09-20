@@ -60,6 +60,7 @@ else
         --disable-vdpau
         --enable-swresample
         --enable-libdav1d
+        --enable-avdevice
         --enable-decoder=h264
         --enable-decoder=hevc
         --enable-decoder=av1
@@ -89,11 +90,11 @@ else
             --enable-outdev=v4l2
             --enable-encoder=rawvideo
         )
-    else
-        # libavdevice is only used for V4L2 on Linux
-        conf+=(
-            --disable-avdevice
-        )
+    # else
+    #     # libavdevice is only used for V4L2 on Linux
+    #     conf+=(
+    #         --disable-avdevice
+    #     )
     fi
 
     if [[ "$LINK_TYPE" == static ]]
