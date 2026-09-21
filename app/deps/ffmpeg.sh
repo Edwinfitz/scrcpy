@@ -62,6 +62,7 @@ else
         --enable-libdav1d
         --enable-avdevice
         --enable-libopus
+        --enable-encoder=opus
         --enable-decoder=h264
         --enable-decoder=hevc
         --enable-decoder=av1
