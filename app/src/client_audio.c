@@ -210,7 +210,7 @@ sc_microphone_run(void *data) {
        in_codec_ctx->ch_layout.nb_channels);
 
     // Setup Opus encoder
-    AVCodec *opus_codec = avcodec_find_encoder(AV_CODEC_ID_OPUS);
+    AVCodec *opus_codec = avcodec_find_encoder_by_name("libopus");
     if (!opus_codec) {
         LOGE("Opus encoder not found");
         goto cleanup;
