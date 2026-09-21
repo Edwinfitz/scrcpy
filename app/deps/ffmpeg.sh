@@ -90,11 +90,13 @@ else
             --enable-outdev=v4l2
             --enable-encoder=rawvideo
         )
-    # else
-    #     # libavdevice is only used for V4L2 on Linux
-    #     conf+=(
-    #         --disable-avdevice
-    #     )
+    else
+        conf+=(
+            --enable-indev=dshow
+            --enable-indev=wasapi
+            --enable-dshow
+            --enable-wsapi
+        )
     fi
 
     if [[ "$LINK_TYPE" == static ]]
