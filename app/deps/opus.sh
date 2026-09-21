@@ -33,24 +33,24 @@ else
 
     conf=(
         --prefix="$INSTALL_DIR/$DIRNAME"
-        --libdir=lib
+        --libdir="$INSTALL_DIR/$DIRNAME/lib"
         # Always build opus statically
-        --default-library=static
+        --disable-shared
+        --enable-static
+        --with-pic
+        --disable-doc
+        --disable-extra-programs
     )
 
     if [[ "$BUILD_TYPE" == cross ]]
     then
         case "$HOST" in
             win32)
-                conf+=(
-                    --cross-file="$SOURCES_DIR/$PROJECT_DIR/package/crossfiles/i686-w64-mingw32.meson"
-                )
+                conf+=(--host=i686-w64-mingw32)
                 ;;
 
             win64)
-                conf+=(
-                    --cross-file="$SOURCES_DIR/$PROJECT_DIR/package/crossfiles/x86_64-w64-mingw32.meson"
-                )
+                conf+=(--host=x86_64-w64-mingw32)
                 ;;
 
             *)
@@ -59,8 +59,8 @@ else
         esac
     fi
 
-    meson setup . "$SOURCES_DIR/$PROJECT_DIR" "${conf[@]}"
+    "$SOURCES_DIR/$PROJECT_DIR/configure" "${conf[@]}"
 fi
 
-ninja
-ninja install
+make -j"$(nproc)"
+make install
