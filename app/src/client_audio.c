@@ -210,7 +210,7 @@ sc_microphone_run(void *data) {
        in_codec_ctx->ch_layout.nb_channels);
 
     // Setup Opus encoder
-    AVCodec *opus_codec = avcodec_find_encoder(AV_CODEC_ID_OPUS);
+    AVCodec *opus_codec = avcodec_find_encoder_by_name("libopus");
     if (!opus_codec) {
         LOGE("Opus encoder not found");
         goto cleanup;
@@ -221,8 +221,6 @@ sc_microphone_run(void *data) {
         LOGE("Could not allocate Opus codec context");
         goto cleanup;
     }
-    // The native opus encoder requires strict set to -2
-    opus_ctx->strict_std_compliance = -2;
 
     opus_ctx->sample_fmt = AV_SAMPLE_FMT_S16; // Opus uses 16-bit PCM
     opus_ctx->sample_rate = 48000;            // Opus standard sample rate
