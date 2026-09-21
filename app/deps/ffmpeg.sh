@@ -94,7 +94,6 @@ else
         conf+=(
             --enable-indev=dshow
             --enable-indev=wasapi
-            --enable-dshow
             --enable-wsapi
         )
     fi
