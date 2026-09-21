@@ -61,6 +61,7 @@ else
         --enable-swresample
         --enable-libdav1d
         --enable-avdevice
+        --enable-libopus
         --enable-decoder=h264
         --enable-decoder=hevc
         --enable-decoder=av1
