@@ -221,6 +221,7 @@ sc_microphone_run(void *data) {
         LOGE("Could not allocate Opus codec context");
         goto cleanup;
     }
+    opus_ctx.strict_std_compliance = -2;
 
     opus_ctx->sample_fmt = AV_SAMPLE_FMT_S16; // Opus uses 16-bit PCM
     opus_ctx->sample_rate = 48000;            // Opus standard sample rate
